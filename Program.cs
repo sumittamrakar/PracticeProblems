@@ -7,8 +7,12 @@ namespace Practice
     {
         static void Main(string[] args)
         {
-            // FirstNonRecurring("BBCABA");
-            // longestConsecutiveChar("AABCDDBBBEA");
+            FirstNonRecurring("BBCABA");
+            LongestConsecutiveChar("AABCDDBBBEA");
+            int[,] M = { { -3, -2, -1, 1 },
+                      { -2, 2, 3, 4 },
+                      { 4, 5, 7, 8 } };
+            NegativeCountMatrix(M, 3, 4);
         }
 
         private static int FirstNonRecurring(string test)
@@ -32,7 +36,7 @@ namespace Practice
             return x;
         }
 
-        private static Dictionary<char, int> longestConsecutiveChar(string test)
+        private static Dictionary<char, int> LongestConsecutiveChar(string test)
         {
             int max_count = 0;
             char max_char = '\0';
@@ -60,6 +64,27 @@ namespace Practice
             {
                 { max_char, max_count }
             };
+        }
+
+        private static int NegativeCountMatrix(int[,] M, int n, int m)
+        {
+            int i = 0;
+            int j = m - 1;
+            int count = 0;
+            
+            while (j >= 0 && i < n)
+            {
+                if (M[i,j] < 0)
+                {
+                    count += j + 1;
+                    i++;
+                }
+                else
+                {
+                    j -= 1;
+                }
+            }
+            return count;
         }
     }
 }
