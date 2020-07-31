@@ -8,11 +8,16 @@ namespace Practice
         static void Main(string[] args)
         {
             FirstNonRecurring("BBCABA");
+
             LongestConsecutiveChar("AABCDDBBBEA");
+
             int[,] M = { { -3, -2, -1, 1 },
                       { -2, 2, 3, 4 },
                       { 4, 5, 7, 8 } };
             NegativeCountMatrix(M, 3, 4);
+
+            int[] theArray = { 1, -3, 2, 1, -1 };
+            ReturnMaxSumSubArray(theArray);
         }
 
         private static int FirstNonRecurring(string test)
@@ -85,6 +90,27 @@ namespace Practice
                 }
             }
             return count;
+        }
+
+        private static int[] ReturnMaxSumSubArray(int[] array)
+        {
+            int[] subArray = new int[2];
+            int prev_sum = 0;
+            int sum = 0;
+            for (int i = 0; i < array.Length-1; i++)
+            {
+                sum = array[i] + array[i + 1];
+                if (prev_sum >= sum)
+                {
+                    sum = prev_sum;
+                }
+                else
+                {
+                    subArray[0] = array[i];
+                    subArray[1] = array[i + 1];
+                }
+            }
+            return subArray;
         }
     }
 }
